@@ -1,5 +1,6 @@
 package com.marwaeltayeb.travelmantics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -23,6 +24,7 @@ public class AdminActivity extends AppCompatActivity {
     EditText txtDescription;
     Button btnSelectImage;
     ImageView imageTravel;
+    TravelDeal deal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,18 @@ public class AdminActivity extends AppCompatActivity {
         btnSelectImage = (Button) findViewById(R.id.btnSelectImage);
         imageTravel = (ImageView) findViewById(R.id.imageTravel);
 
-
+        // Receive the TravelDeal class
+        Intent intent = getIntent();
+        TravelDeal deal = (TravelDeal) intent.getSerializableExtra("Deal");
+        // if the deal is empty, create new object
+        if (deal==null) {
+            deal = new TravelDeal();
+        }
+        this.deal = deal;
+        // Get the data of the available deal
+        txtTitle.setText(deal.getTitle());
+        txtDescription.setText(deal.getDescription());
+        txtPrice.setText(deal.getPrice());
     }
 
     @Override
