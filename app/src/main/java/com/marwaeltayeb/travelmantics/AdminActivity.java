@@ -76,15 +76,19 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void saveDeal() {
-        String title = txtTitle.getText().toString();
-        String price = txtPrice.getText().toString();
-        String description = txtDescription.getText().toString();
-
-        TravelDeal deal = new TravelDeal(title,price,description,"");
-        mDatabaseReference.push().setValue(deal);
-
+        deal.setTitle(txtTitle.getText().toString());
+        deal.setPrice(txtPrice.getText().toString());
+        deal.setDescription(txtDescription.getText().toString());
+        if(deal.getId()==null) {
+            // Add deal
+            mDatabaseReference.push().setValue(deal);
+        }
+        else {
+            // Update deal
+            mDatabaseReference.child(deal.getId()).setValue(deal);
+        }
     }
-
+    
     private void clean() {
         txtTitle.setText("");
         txtPrice.setText("");
