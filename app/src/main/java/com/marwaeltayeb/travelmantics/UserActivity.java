@@ -2,12 +2,18 @@ package com.marwaeltayeb.travelmantics;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -30,6 +36,17 @@ public class UserActivity extends AppCompatActivity {
             case R.id.insert_menu:
                 Intent intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);
+                return true;
+            case R.id.logout_menu:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Log.d("Logout", "User Logged Out");
+                                FirebaseUtil.attachListener();
+                            }
+                        });
+                FirebaseUtil.detachListener();
                 return true;
         }
         return super.onOptionsItemSelected(item);
