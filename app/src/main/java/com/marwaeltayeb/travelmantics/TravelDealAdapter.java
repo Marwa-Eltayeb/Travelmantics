@@ -35,6 +35,7 @@ public class TravelDealAdapter extends RecyclerView.Adapter<TravelDealAdapter.De
                 Log.d("Deal: ", td.getTitle());
                 td.setId(dataSnapshot.getKey());
                 deals.add(td);
+                // Notify if an item is inserted
                 notifyItemInserted(deals.size()-1);
             }
 
@@ -103,11 +104,14 @@ public class TravelDealAdapter extends RecyclerView.Adapter<TravelDealAdapter.De
 
         @Override
         public void onClick(View view) {
+            // get position of the item that is clicked
             int position = getAdapterPosition();
             Log.d("Click", String.valueOf(position));
+            // find the travelDeal that was selected through its position
             TravelDeal selectedDeal = deals.get(position);
             Intent intent = new Intent(view.getContext(), AdminActivity.class);
-            intent.putExtra("Deal", String.valueOf(selectedDeal));
+            // Pass an object of TravelDeal class
+            intent.putExtra("Deal", (selectedDeal));
             view.getContext().startActivity(intent);
         }
     }
