@@ -69,6 +69,12 @@ public class AdminActivity extends AppCompatActivity {
                 saveDeal();
                 Toast.makeText(this, "Deal saved", Toast.LENGTH_LONG).show();
                 clean();
+                backToList();
+                return true;
+            case R.id.delete_menu:
+                deleteDeal();
+                Toast.makeText(this, "Deal Deleted", Toast.LENGTH_LONG).show();
+                backToList();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -88,7 +94,22 @@ public class AdminActivity extends AppCompatActivity {
             mDatabaseReference.child(deal.getId()).setValue(deal);
         }
     }
-    
+
+    private void deleteDeal() {
+        if (deal == null) {
+            Toast.makeText(this, "Please save the deal before deleting", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mDatabaseReference.child(deal.getId()).removeValue();
+
+    }
+
+    // Return to UserActivity after saving
+    private void backToList() {
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
+
     private void clean() {
         txtTitle.setText("");
         txtPrice.setText("");

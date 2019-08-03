@@ -19,6 +19,7 @@ public class FirebaseUtil {
             mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         }
+        // Reset the arrayList
         mDeals = new ArrayList<TravelDeal>();
         mDatabaseReference = mFirebaseDatabase.getReference().child(ref);
     }
