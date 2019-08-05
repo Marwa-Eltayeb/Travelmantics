@@ -12,4 +12,6 @@
     <string name="las_vegas_holiday_resort">Las Vegas Holiday Resort</string>
     <string name="_15000">15000</string>
     <string name="new_travel_deal">New Travel Deal</string>
+    <string name="delete_deal">Delete Deal</string>
+    <string name="logout">Logout</string>
 </resources>
