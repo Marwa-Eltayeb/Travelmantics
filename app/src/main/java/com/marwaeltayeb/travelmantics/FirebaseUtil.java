@@ -69,6 +69,7 @@ public class FirebaseUtil {
                         .setProviders(
                                 AuthUI.EMAIL_PROVIDER,
                                 AuthUI.GOOGLE_PROVIDER)
+                        .setTheme(R.style.AppTheme)
                         .build(),
                 RC_SIGN_IN);
     }

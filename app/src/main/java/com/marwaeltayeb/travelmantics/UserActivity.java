@@ -21,6 +21,7 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
     }
 
     @Override
@@ -32,7 +33,7 @@ public class UserActivity extends AppCompatActivity {
             insertMenu.setVisible(true);
         }
         else {
-            insertMenu.setVisible(false);
+            //insertMenu.setVisible(false);
         }
 
         return true;
